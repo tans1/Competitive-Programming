@@ -12,7 +12,5 @@ class Solution:
             if i > 1: temp.append(i)
         res = 0
         for i in temp:
-            b = math.perm(i)
-            c = (math.perm(i-2)) * 2
-            res += b // c
+            res += math.perm(i,2) // 2
         return res
