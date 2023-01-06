@@ -3,11 +3,11 @@ class Solution:
         
         dct = {nums[i]:i for i in range(len(nums))}
         
-        for op in operations:
-            j = dct[op[0]]
-            nums[j] = op[1]
+        for operation in operations:
+            j = dct[operation[0]]
+            nums[j] = operation[1]
             
-            del dct[op[0]]
+            del dct[operation[0]]
             
-            dct[op[1]] = j
+            dct[operation[1]] = j
         return nums
