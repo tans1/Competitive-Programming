@@ -4,12 +4,13 @@ class Solution:
         
         for i in range(97,123):
             char = chr(i)
-            temp = []
+            temp = float('inf')
+            
             for wrd in words:
                 fr = wrd.count(char)
-                temp.append(fr)
-                
-            res.extend([char]*min(temp))
+                temp = min(temp, fr)
+            
+            res.extend([char]*temp)
             
         return res
         
