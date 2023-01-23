@@ -3,7 +3,7 @@ class Solution:
         nums.sort()
         output = []
         i = 0
-        while i < len(nums):
+        while i < len(nums) and nums[i] <= target:
             if nums[i] == target:
                 output.append(i)
             i +=1
