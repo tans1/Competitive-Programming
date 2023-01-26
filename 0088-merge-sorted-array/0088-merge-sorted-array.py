@@ -8,5 +8,5 @@ class Solution:
         temp2 = list(heapq.merge(temp[:m],nums2))
         for i in range(len(temp2)):
             nums1[i] = temp2[i]
-        print(nums1)
+        
         
