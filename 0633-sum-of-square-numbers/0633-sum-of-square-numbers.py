@@ -7,7 +7,6 @@ class Solution:
         
         while i <= j:
             if (ls[i] ** 2) + (ls[j] ** 2) == c:
-                print(ls[i], ls[j])
                 return True
             else:
                 if (ls[i] ** 2) + (ls[j] ** 2) < c:
