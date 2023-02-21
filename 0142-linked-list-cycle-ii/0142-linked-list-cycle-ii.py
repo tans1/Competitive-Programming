@@ -7,15 +7,18 @@
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head or not head.next: return 
-        # dct = defaultdict(int)
-        # node = head
-        # while node:
-        #     if node in dct:
-        #         return dct[node]
-        #     dct[node] = node
-        #     node = node.next
-        # return 
+
+######################################################################################
+        dct = defaultdict(int)
+        node = head
+        while node:
+            if node in dct:
+                return dct[node]
+            dct[node] = node
+            node = node.next
+        return 
     
+########################################################################################
         fast = slow =head
         while fast and fast.next and slow:
             fast = fast.next.next
