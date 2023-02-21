@@ -15,10 +15,12 @@ class Solution:
             dct[node] = True
             node = node.next
         return False
-        # fast = slow =head
-        # while fast and fast.next and slow:
-        #     fast = fast.next.next
-        #     slow = slow.next
-        #     if slow == fast:
-        #         return True
-        # return False
+############################################################################################
+
+        fast = slow =head
+        while fast and fast.next and slow:
+            fast = fast.next.next
+            slow = slow.next
+            if slow == fast:
+                return True
+        return False
