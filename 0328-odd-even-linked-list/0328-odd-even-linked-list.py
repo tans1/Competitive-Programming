@@ -7,22 +7,20 @@ class Solution:
     def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head or not head.next: return head
         dummy = tail = ListNode(-1)
-        node1 = head
-        node2 = head.next
-        while node1:
-            v = node1.val
-            tail.next = ListNode(v) 
+        odd = head
+        even = head.next
+        while odd:
+            tail.next = ListNode(odd.val)
             tail = tail.next
-            if node1.next:
-                node1 = node1.next.next
+            if odd.next:
+                odd = odd.next.next
             else:
                 break
-        while node2:
-            v = node2.val
-            tail.next = ListNode(v)
+        while even:
+            tail.next = ListNode(even.val)
             tail = tail.next
-            if node2.next:
-                node2 = node2.next.next
+            if even.next:
+                even = even.next.next
             else:
                 break
         return dummy.next
