@@ -9,12 +9,13 @@ class Solution:
             
             up_row = helper(row-1)
             n = len(up_row)
-            temp = [1]
-            for i in range(n-1):
-                temp.append(up_row[i]+ up_row[i+1])
-            temp.append(1)
+            res = [1]
             
-            return temp
+            for i in range(n-1):
+                res.append(up_row[i]+ up_row[i+1])
+            res.append(1)
+            
+            return res
                 
         return helper(rowIndex)
             
