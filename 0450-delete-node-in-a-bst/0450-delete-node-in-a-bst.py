@@ -19,7 +19,8 @@ class Solution:
             
             else: #now the node to be deleted is found  root.val = key
                 if not root.left and not root.right:
-                    return None
+                    root = None
+                    return root
                 
                 elif root.right and not root.left:
                     return root.right
