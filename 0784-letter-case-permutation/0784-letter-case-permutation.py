@@ -8,11 +8,13 @@ class Solution:
                 return
             
             
-            S[i] = S[i].upper()
+            S[i] = S[i].swapcase()
             dfs(S,i+1)
             
-            S[i] = S[i].lower()
-            dfs(S,i + 1)
+            S[i] = S[i].swapcase()
+            dfs(S,i+1)
+
+
             
         
         S = list(s)
