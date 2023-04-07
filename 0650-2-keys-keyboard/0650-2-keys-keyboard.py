@@ -1,11 +1,11 @@
 class Solution:
     def minSteps(self, n: int) -> int:
         i = 2
-        temp = []
+        ans = 0
         while n >= i:
             if n % i == 0:
-                temp.append(i)
+                ans += i
                 n = n // i
             else:
                 i += 1
-        return sum(temp)
+        return ans
