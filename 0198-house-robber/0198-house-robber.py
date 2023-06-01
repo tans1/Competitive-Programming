@@ -6,6 +6,7 @@ class Solution:
             nonlocal ans
             if i >= len(nums):
                 ans = max(ans,cur)
+                return
             
             for j in range(i,len(nums)):
                 backtracking(j+2,cur + nums[j])
