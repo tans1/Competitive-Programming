@@ -3,7 +3,6 @@ class Solution:
         vowels = ['a','e','i','o','u']
         ans = 0
         
-        @lru_cache
         def dfs(i,cur):
             nonlocal ans
             if len(cur) == n:
