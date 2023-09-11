@@ -4,14 +4,14 @@ class Solution:
         sortedGroup = sorted(dct.items(), key = lambda x: x[1])
         
         ans = []
-        temp = []
+        curGroup = []
         
         for Id, size in sortedGroup:
-            if len(temp) + 1 <= size:
-                temp.append(Id)
+            if len(curGroup) + 1 <= size:
+                curGroup.append(Id)
             
-            if len(temp) == size:
-                ans.append(temp)
-                temp = []
+            if len(curGroup) == size:
+                ans.append(curGroup)
+                curGroup = []
                 
         return ans
