@@ -1,6 +1,6 @@
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
-        # it is Minimum Spanninf tree : using kruskal algorithm
+        # it is Minimum Spanning tree : using prims algorithm
         parent = [-1 for _ in range(len(points))]
         ans = 0
         def find(u):
