@@ -1,10 +1,12 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
-        temp = [0 for i in range(len(nums) + 2)]
-        
+        res = 0
         for n in nums:
-            temp[n] += 1
+            temp = 1 << n
+            
+            if res == (temp | res):
+                return n
+            else:
+                res = res | temp
         
-        for i in range(len(temp)):
-            if temp[i] > 1:
-                return i
+        
