@@ -2,25 +2,27 @@ class Solution:
     def longestPalindromeSubseq(self, s: str) -> int:
         memo = {}
         def dfs(i,j):
-            if i == j:
-                return s[i]
+            nonlocal memo
             if (i,j) in memo:
                 return memo[(i,j)]
-            if s[i] == s[j] and i + 1 == j:
-                return s[i:j+1]
-            
-            if s[i] == s[j] and i + 1 != j:
-                return s[i] + dfs(i+1,j-1) + s[j]
+            if i > j:
+                return ""
+            if i == j:
+                memo[(i,j)] = s[i]
+                return memo[(i,j)]
+            if s[i] == s[j]:
+                memo[(i,j)] = s[i] + dfs(i+1,j-1) + s[j]
+                return memo[(i,j)]
             else:
-                temp1 = dfs(i,j-1)
-                temp2 = dfs(i+1,j)
+                option1 = dfs(i,j-1)
+                option2 = dfs(i+1,j)
                 
-                if len(temp1) > len(temp2):
-                    memo[(i,j)] = temp1
+                if len(option1) > len(option2):
+                    memo[(i,j)] = option1
                 else:
-                    memo[(i,j)] = temp2
+                    memo[(i,j)] = option2
                 
                 return memo[(i,j)]
         
         return len(dfs(0,len(s)-1))
-                
+            
