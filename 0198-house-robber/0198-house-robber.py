@@ -1,25 +1,28 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        ans = 0
-        @lru_cache(maxsize = None)
-        def backtracking(i,cur):
+        memo = {}
+        
+        def dfs(i,prev_robbed):
             nonlocal ans
-            if i >= len(nums):
-                ans = max(ans,cur)
-                return
+            if i + 1 == len(nums):
+                if prev_robbed: 
+                    return 0
+                else:
+                    return nums[i]
             
-            for j in range(i,len(nums)):
-                backtracking(j+2,cur + nums[j])
+            if (i,prev_robbed) in memo:
+                return memo[(i,prev_robbed)]
+            
+            if prev_robbed:
+                temp = dfs(i+1,not prev_robbed)
+            else:
+                temp = max(dfs(i+1,not prev_robbed) + nums[i], dfs(i+1, prev_robbed))
+            memo[(i,prev_robbed)] = temp
+            return temp
         
-        backtracking(0,0)
+        ans = dfs(0,False)
         return ans
-        
-        
-        # dp = [0,0]
-        # i = 0
-        # while i < len(nums):
-        #     dp[0] += nums[i]
-        #     if i + 1 < len(nums):
-        #         dp[1] += nums[i+1]
-        #     i += 2
-        # return max(dp)
+                
+                
+                
+            
