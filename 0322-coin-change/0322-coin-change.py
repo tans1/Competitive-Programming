@@ -1,15 +1,19 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
+        # using buttom up knapsack
+        dp = [[float("inf") for _ in range(amount + 1)] for _ in range(len(coins))]
         
-#         BUTTOM UP :DP
-        dp = [float('inf') for _ in range(amount + 1)]
-        dp[0] = 0
-        
-        for i in range(amount + 1):
-            for j in range(len(coins)):
-                if i - coins[j] >= 0:
-                    dp[i] = min(dp[i], dp[i-coins[j]] + 1)
-        
-        if dp[amount] != float('inf'):
-            return dp[amount]
+        for i in range(len(coins)):
+            for j in range(amount + 1):
+                if j == 0:
+                    dp[i][j] = 0
+                else:
+                    if coins[i] > j:
+                        dp[i][j] = dp[i-1][j]
+                    else:
+                        dp[i][j] = min(dp[i-1][j], dp[i][j-coins[i]] + 1)
+                        
+                        
+        if dp[-1][-1] != float("inf"):
+            return dp[-1][-1]
         return -1
