@@ -1,35 +1,21 @@
 class Solution:
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
-        graph = defaultdict(list)
-        indegree = [0 for _ in range(numCourses)]
+        # USING FROYD-WARSHALL ALGORITHM
+        dist = [[float("inf")] * numCourses for _ in range(numCourses)]
+        for u,v in prerequisites:
+            dist[u][v] = 1
         
-        for a,b in prerequisites:
-            graph[a].append(b)
-            indegree[b] += 1
         
-        q = deque()
         for i in range(numCourses):
-            if indegree[i] == 0:
-                q.append(i) 
+            dist[i][i] = 0
+        for k in range(numCourses):
+            for i in range(numCourses):
+                for j in range(numCourses):
+                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
         
-        pre = defaultdict(set)
-        while q:
-            nd = q.popleft()
-            for nb in graph[nd]:
-                pre[nb].add(nd)
-                pre[nb] = pre[nb].union(pre[nd])
-                indegree[nb] -= 1
-                
-                if indegree[nb] == 0:
-                    q.append(nb)
-
         ans = []
         for u,v in queries:
-            st = set()
-            st.add(u)
-            if len(st.intersection(pre[v])) > 0:
-                ans.append(True)
-            else:
-                ans.append(False)
+            ans.append(dist[u][v] != float("inf"))
         return ans
+            
             
