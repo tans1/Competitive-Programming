@@ -3,9 +3,7 @@ class Solution:
         graph = defaultdict(list)
         for u,v,w in flights:
             graph[u].append((v,w))
-        
-        dist = [float("inf") for _ in range(n)]
-        dist[src] = 0
+
         ans = float("inf")
         q = [(0,src,k)]
         visited = set()
@@ -13,7 +11,6 @@ class Solution:
         while q:
             curr_weight, curr_node, curr_stop = heapq.heappop(q)
             
-            # print(curr_weight, curr_node, curr_stop)
             if curr_node == dst and curr_stop >= -1 :
                 ans = min(ans, curr_weight)
                 
@@ -24,12 +21,10 @@ class Solution:
             
             
             for nb in graph[curr_node]:
-                if curr_stop >= 0 and curr_weight + nb[1] < dist[nb[0]]:
+                if curr_stop >= 0 :
                     heapq.heappush(q,(curr_weight + nb[1], nb[0], curr_stop - 1))
-                    # dist[nb[0]] = curr_weight + nb[1]
                     
         
-        # print(dist)
         if ans == float("inf"):
             return -1
         return ans
