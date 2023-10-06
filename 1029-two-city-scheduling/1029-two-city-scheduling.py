@@ -1,16 +1,10 @@
 class Solution:
     def twoCitySchedCost(self, costs: List[List[int]]) -> int:
-        temp = sorted(costs, key = lambda x: (x[0] - x[1]))
-        forCityA =  temp[:len(temp) // 2]
-        forCityB = temp[len(temp) // 2 : ]
-        
-        ans = 0
-        for a,b in forCityA:
-            ans += a
-        
-        for a,b in forCityB:
-            ans += b
-        
-        return ans
+        srted = sorted(costs, key = lambda x: (x[0]-x[1]))
+        cityA , cityB = 0,0
+        for i in range(len(costs) // 2):
+            cityA += srted[i][0]
+            cityB += srted[len(costs) - i -1][1]
+        return  cityA + cityB
         
         
